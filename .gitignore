@@ -7,3 +7,6 @@ backup/
 # Archivos compilados de SSIS
 ssis/**/bin/
 ssis/**/obj/
+
+# Archivos de configuración de Windows
+desktop.ini
