@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.datawarehouse_2025_G01"
+  DTS:DTSID="{88AA68A0-7729-401F-B4E7-6B547E71C12D}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=datawarehouse_2025_G01;Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Use Encryption for Data=False;Trust Server Certificate=True;Application Name=SSIS-01_Dim_Cliente-{88AA68A0-7729-401F-B4E7-6B547E71C12D}localhost.datawarehouse_2025_G01;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

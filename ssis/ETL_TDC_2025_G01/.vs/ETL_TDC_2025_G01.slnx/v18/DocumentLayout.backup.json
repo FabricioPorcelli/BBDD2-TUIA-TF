@@ -1,0 +1,84 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|solutionrelative:ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\02_Dim_Producto.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|solutionrelative:ETL_TDC_2025_G01\\02_Dim_Producto.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|solutionrelative:ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{DE4F3CF7-6573-05C9-FB17-D687E4DAADD9}|ETL_TDC_2025_G01\\ETL_TDC_2025_G01.dtproj|solutionrelative:ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "03_Dim_Empleado.dtsx [Design]",
+              "DocumentMoniker": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx",
+              "RelativeDocumentMoniker": "ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx",
+              "ToolTip": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx [Design]",
+              "RelativeToolTip": "ETL_TDC_2025_G01\\03_Dim_Empleado.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-05-07T22:14:47.346Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "02_Dim_Producto.dtsx [Design]",
+              "DocumentMoniker": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\02_Dim_Producto.dtsx",
+              "RelativeDocumentMoniker": "ETL_TDC_2025_G01\\02_Dim_Producto.dtsx",
+              "ToolTip": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\02_Dim_Producto.dtsx [Design]",
+              "RelativeToolTip": "ETL_TDC_2025_G01\\02_Dim_Producto.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-05-07T22:14:41.262Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "01_Dim_Cliente.dtsx [Design]",
+              "DocumentMoniker": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx",
+              "RelativeDocumentMoniker": "ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx",
+              "ToolTip": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx [Design]",
+              "RelativeToolTip": "ETL_TDC_2025_G01\\01_Dim_Cliente.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-05-07T22:11:34.25Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "08_Fact_Ventas.dtsx [Design]",
+              "DocumentMoniker": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx",
+              "RelativeDocumentMoniker": "ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx",
+              "ToolTip": "I:\\My Drive\\TUIA\\IA3.3 - Bases de datos II\\BBDD2-COM1-TPFinal-PorcelliFabricio\\ssis\\ETL_TDC_2025_G01\\ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx [Design]",
+              "RelativeToolTip": "ETL_TDC_2025_G01\\08_Fact_Ventas.dtsx [Design]",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFTSURBVDhPY2QAgqUbD/8H0bjAu49fGG7fvZ8\u002BqTFrFlQIAv7/h\u002BgDGfDv71\u002BcePKi7f9NPZP/59VPSwNrQAJMUJogaK0pZDh\u002B6uxMdEOINqC6pR9MgwwBM6CABUqDQcWCa1AWA0NHghac//k9G0NcZAiYvWj5GjANAxgu\u002BC2rAcYwAGJz6NkxZEe7QUVQAYYBrI9vgDEMwPhffkEFsAFCsfDp\u002B9//D98jYgOqDQwIBiLI5vc/GBjefP/PwMLGARVFABQDQIEGwyCArPnNdwaGf1iSG85ARNb8\u002BhsDwweQAb\u002BBAmgAZyAia371lYHh7MnrDI9/yzA4hhQwlM29/J/BeCbYPSjpABT3MJvf//jP8BZoK4j95TfE7SD5hy\u002B\u002BMFy5846hCyyCZMDUpbugLFxABq75zPU3UDGoAaDchp7C0AHI6TDNyAaAszNRAOpnFHA2nREAjMTvHMVXB8cAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-05-07T22:03:59.189Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

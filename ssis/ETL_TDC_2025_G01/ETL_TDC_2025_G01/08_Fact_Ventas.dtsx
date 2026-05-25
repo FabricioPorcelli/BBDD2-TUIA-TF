@@ -1,0 +1,2269 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/2/2026 7:25:21 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-ODKGCMP"
+  DTS:CreatorName="DESKTOP-ODKGCMP\fabri"
+  DTS:DTSID="{E5989312-FA19-41F0-9F12-11FF64E13AD5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="11274"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{4BBF6445-3BE8-4266-9C05-650AFBF32499}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.root]"
+      DTS:CreationName="ADO.NET:MySql.Data.MySqlClient.MySqlConnection, MySql.Data, Version=9.5.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d"
+      DTS:DTSID="{DFFD4983-A7CB-4B87-90B2-19C74E4595E0}"
+      DTS:ObjectName="localhost.root">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="server=localhost;user id=root;persistsecurityinfo=True;sslmode=Disabled;database=sales;allowpublickeyretrieval=True;">
+          <DTS:Password
+            DTS:Name="password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlh4Qg8IWJEertkfZCZc/7QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACGDvTnM/59+Nq9GNTrFplx8NfCYpsLDW80pLJ0Tee8fQAAAAAOgAAAAAIAACAAAACrFSkuYvtGJkXH8d7fyoC3hbVokjl/7sEVgbldnWQeXUAAAABMdiydJeog6wnMfpS9vu5EgqbN0k6UjysUl1tAYG76RJ9uTGLBNlcAA2AXc933jF/A7VHnhPw6DuLaihRHU145QAAAABaUrFJLnuW2RHWuOy1LphrpdDmwtEcEwu94fpXHFMjNJHKIWiyNDfJrui4zc5kYv0mNSQXwBiBWYiDRTfk+QNw</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.TDC_History_Sales]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{144312C0-9E65-4EE3-B669-0B4284C86E6A}"
+      DTS:ObjectName="localhost.TDC_History_Sales">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TDC_History_Sales;Provider=MSOLEDBSQL19.1;Persist Security Info=False;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-07_Fact_Ventas-{144312C0-9E65-4EE3-B669-0B4284C86E6A}localhost.TDC_History_Sales;Use Encryption for Data=False;Trust Server Certificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Clean Sales DATAWAREHOUSE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b06a1658-5d0a-44eb-98e2-3c6faa270e28}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clean Sales DATAWAREHOUSE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{88AA68A0-7729-401F-B4E7-6B547E71C12D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Fact_Ventas_G01;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load History Sales SQL Server"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9b34bd9d-de6c-4076-8f09-63e948754a9b}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load History Sales SQL Server"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Billing History STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_BillingHistory_G01]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.bd_staging_2025_G01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[billing_id]"
+                      cachedDataType="i4"
+                      cachedName="billing_id"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[billing_id]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="date"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[date]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                      cachedDataType="i4"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMER_ID]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[employee_id]"
+                      cachedDataType="i4"
+                      cachedName="employee_id"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[EMPLOYEE_ID]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[employee_id]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].Columns[quantity]"
+                      cachedDataType="i4"
+                      cachedName="quantity"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[quantity]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BILLING_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CUSTOMER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[EMPLOYEE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EMPLOYEE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source History Sales SQL Server"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Billing]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.TDC_History_Sales]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.TDC_History_Sales]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[id]"
+                      name="id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[billing_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[billing_id]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[billing_id]"
+                      name="billing_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[date]"
+                      name="date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[employee_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[employee_id]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[employee_id]"
+                      name="employee_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[quantity]"
+                      name="quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      length="45"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].Columns[region]"
+                      name="region"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      dataType="i4"
+                      name="id" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[billing_id]"
+                      dataType="i4"
+                      name="billing_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      dataType="dbTimeStamp"
+                      name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                      dataType="i4"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[employee_id]"
+                      dataType="i4"
+                      name="employee_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      dataType="i4"
+                      name="quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="region" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[id]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[id]"
+                      name="id" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[billing_id]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[billing_id]"
+                      name="billing_id" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[date]"
+                      name="date" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[employee_id]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[employee_id]"
+                      name="employee_id" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      name="quantity" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[region]"
+                      name="region" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load History Sales SQL Server.Paths[OLE DB Source Output]"
+              endId="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Sales DATAWAREHOUSE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e0692a0d-c40d-4f4f-b7a3-34bd1a9efcae}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Sales DATAWAREHOUSE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{88AA68A0-7729-401F-B4E7-6B547E71C12D}"
+          SQLTask:SqlStatementSource="WITH PricesValid AS (&#xA;    SELECT DISTINCT&#xA;        s.BILLING_ID,&#xA;        s.PRODUCT_ID,&#xA;        s.DATE,&#xA;        ISNULL(&#xA;            -- Precio vigente: el más reciente anterior o igual a la fecha de venta&#xA;            (&#xA;                SELECT TOP 1 p.PRICE&#xA;                FROM bd_staging_2025_G01.dbo.stg_Prices_G01 p&#xA;                WHERE p.PRODUCT_ID = s.PRODUCT_ID&#xA;                  AND TRY_CONVERT(DATETIME, p.DATE) &lt;= s.DATE&#xA;                ORDER BY TRY_CONVERT(DATETIME, p.DATE) DESC&#xA;            ),&#xA;            -- Fallback: el precio más antiguo disponible para ese producto&#xA;            (&#xA;                SELECT TOP 1 p.PRICE&#xA;                FROM bd_staging_2025_G01.dbo.stg_Prices_G01 p&#xA;                WHERE p.PRODUCT_ID = s.PRODUCT_ID&#xA;                ORDER BY TRY_CONVERT(DATETIME, p.DATE) ASC&#xA;            )&#xA;        ) AS unitPrice&#xA;    FROM bd_intermedia_2025_G01.dbo.int_SalesUnified_G01 s&#xA;),&#xA;BillingTotals AS (&#xA;    SELECT &#xA;        s.BILLING_ID,&#xA;        s.DATE,&#xA;        SUM(s.QUANTITY * pv.unitPrice) AS totalBilling&#xA;    FROM bd_intermedia_2025_G01.dbo.int_SalesUnified_G01 s&#xA;    INNER JOIN PricesValid pv &#xA;        ON pv.BILLING_ID = s.BILLING_ID &#xA;       AND pv.PRODUCT_ID = s.PRODUCT_ID&#xA;    GROUP BY s.BILLING_ID, s.DATE&#xA;),&#xA;ApplicableDiscounts AS (&#xA;    SELECT &#xA;        bt.BILLING_ID,&#xA;        ISNULL(MAX(d.PERCENTAGE), 0) AS discountPercentage&#xA;    FROM BillingTotals bt&#xA;    LEFT JOIN bd_staging_2025_G01.dbo.stg_Discounts_G01 d &#xA;        ON bt.totalBilling &gt;= d.TOTAL_BILLING&#xA;       AND bt.DATE BETWEEN TRY_CONVERT(DATE, d.[FROM]) &#xA;                       AND TRY_CONVERT(DATE, d.UNTIL)&#xA;    GROUP BY bt.BILLING_ID&#xA;),&#xA;SalesData AS (&#xA;    SELECT &#xA;        s.BILLING_ID,&#xA;        s.DATE,&#xA;        s.CUSTOMER_ID,&#xA;        s.EMPLOYEE_ID,&#xA;        s.PRODUCT_ID,&#xA;        s.QUANTITY,&#xA;        pv.unitPrice,&#xA;        ad.discountPercentage,&#xA;        ROW_NUMBER() OVER (&#xA;            PARTITION BY s.BILLING_ID, s.PRODUCT_ID &#xA;            ORDER BY s.DATE&#xA;        ) AS rn&#xA;    FROM bd_intermedia_2025_G01.dbo.int_SalesUnified_G01 s&#xA;    INNER JOIN PricesValid pv &#xA;        ON pv.BILLING_ID = s.BILLING_ID &#xA;       AND pv.PRODUCT_ID = s.PRODUCT_ID&#xA;    LEFT JOIN ApplicableDiscounts ad &#xA;        ON ad.BILLING_ID = s.BILLING_ID&#xA;    WHERE pv.unitPrice IS NOT NULL &#xA;      AND pv.unitPrice &gt; 0&#xA;)&#xA;&#xA;INSERT INTO datawarehouse_2025_G01.dbo.Fact_Ventas_G01&#xA;(&#xA;    billingKey,&#xA;    dateKey,&#xA;    customerKey,&#xA;    productKey,&#xA;    employeeKey,&#xA;    regionKey,&#xA;    customerAgeRangeKey,&#xA;    employeeYearsEmployedAtSale,&#xA;    employeeAgeAtSale,&#xA;    quantity,&#xA;    liters,&#xA;    unitPrice,&#xA;    grossAmount,&#xA;    discountPercentage,&#xA;    discountAmount,&#xA;    netAmount&#xA;)&#xA;SELECT &#xA;    ROW_NUMBER() OVER (ORDER BY sd.BILLING_ID, sd.PRODUCT_ID) AS billingKey,&#xA;    CAST(FORMAT(sd.DATE, 'yyyyMMdd') AS INT) AS dateKey,&#xA;    dc.customerKey,&#xA;    dp.productKey,&#xA;    de.employeeKey,&#xA;    dr.regionKey,&#xA;&#xA;    -- rango etario del cliente al momento de la venta&#xA;    ar.ageRangeKey AS customerAgeRangeKey,&#xA;&#xA;    -- antigüedad del empleado al momento de la venta&#xA;    DATEDIFF(YEAR, de.employmentDate, sd.DATE) &#xA;        AS employeeYearsEmployedAtSale,&#xA;&#xA;    DATEDIFF(YEAR, de.birthDate, sd.DATE) &#xA;        AS employeeAgeAtSale,&#xA;&#xA;    sd.QUANTITY AS quantity,&#xA;    sd.QUANTITY * dp.packageSizeLiters AS liters,&#xA;    sd.unitPrice,&#xA;    sd.QUANTITY * sd.unitPrice AS grossAmount,&#xA;    sd.discountPercentage,&#xA;    (sd.QUANTITY * sd.unitPrice) * (sd.discountPercentage / 100.0) AS discountAmount,&#xA;    (sd.QUANTITY * sd.unitPrice) * (1 - sd.discountPercentage / 100.0) AS netAmount&#xA;FROM SalesData sd&#xA;INNER JOIN datawarehouse_2025_G01.dbo.Dim_Producto_G01 dp &#xA;    ON dp.productId = sd.PRODUCT_ID&#xA;INNER JOIN datawarehouse_2025_G01.dbo.Dim_Cliente_G01 dc &#xA;    ON dc.customerId = sd.CUSTOMER_ID&#xA;INNER JOIN datawarehouse_2025_G01.dbo.Dim_Empleado_G01 de &#xA;    ON de.employeeId = sd.EMPLOYEE_ID&#xA;LEFT JOIN datawarehouse_2025_G01.dbo.Dim_Region_G01 dr &#xA;    ON dr.zipcode = dc.zipcode&#xA;LEFT JOIN datawarehouse_2025_G01.dbo.Dim_RangoEtario_G01 ar&#xA;    ON dc.birthDate IS NOT NULL&#xA;   AND DATEDIFF(YEAR, dc.birthDate, sd.DATE)&#xA;       BETWEEN ar.minAge AND ar.maxAge&#xA;WHERE sd.rn = 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Sales INTERMEDIATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c88239b0-db27-45bc-831d-ce387ac382da}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Sales INTERMEDIATE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{858D9F11-8E26-4CF7-B138-B5E6CF665B2A}"
+          SQLTask:SqlStatementSource="INSERT INTO int_SalesUnified_G01 (BILLING_ID, DATE, CUSTOMER_ID, EMPLOYEE_ID, PRODUCT_ID, QUANTITY, SOURCE)&#xA;-- Ventas históricas&#xA;SELECT &#xA;    BILLING_ID, &#xA;    TRY_CONVERT(DATE, DATE) as DATE,&#xA;    CUSTOMER_ID, &#xA;    EMPLOYEE_ID, &#xA;    PRODUCT_ID, &#xA;    QUANTITY, &#xA;    'HISTORY' as SOURCE&#xA;FROM bd_staging_2025_G01.dbo.stg_BillingHistory_G01&#xA;WHERE TRY_CONVERT(DATE, DATE) IS NOT NULL&#xA;&#xA;UNION ALL&#xA;&#xA;-- Ventas actuales&#xA;SELECT &#xA;    b.BILLING_ID, &#xA;    TRY_CONVERT(DATE, b.DATE) as DATE,&#xA;    b.CUSTOMER_ID, &#xA;    b.EMPLOYEE_ID, &#xA;    bd.PRODUCT_ID, &#xA;    bd.QUANTITY, &#xA;    'CURRENT' as SOURCE&#xA;FROM bd_staging_2025_G01.dbo.stg_Billing_G01 b&#xA;INNER JOIN bd_staging_2025_G01.dbo.stg_BillingDetail_G01 bd ON b.BILLING_ID = bd.BILLING_ID&#xA;WHERE TRY_CONVERT(DATE, b.DATE) IS NOT NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Sales STAGING"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{be7eb2e5-ab59-4e87-810e-21bfefc12bde}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Sales STAGING"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source Billing MySQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM sales.BILLING;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.root]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[BILLING_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]"
+                      name="BILLING_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[REGION]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      length="45"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[REGION]"
+                      name="REGION"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BRANCH_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[BRANCH_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BRANCH_ID]"
+                      name="BRANCH_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[DATE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[CUSTOMER_ID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[CUSTOMER_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[CUSTOMER_ID]"
+                      name="CUSTOMER_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[EMPLOYEE_ID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[EMPLOYEE_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[EMPLOYEE_ID]"
+                      name="EMPLOYEE_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[BILLING_ID]"
+                      dataType="i4"
+                      name="BILLING_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[REGION]"
+                      dataType="wstr"
+                      length="45"
+                      name="REGION" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[BRANCH_ID]"
+                      dataType="i4"
+                      name="BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[DATE]"
+                      dataType="dbTimeStamp"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[CUSTOMER_ID]"
+                      dataType="i2"
+                      name="CUSTOMER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].ExternalColumns[EMPLOYEE_ID]"
+                      dataType="i2"
+                      name="EMPLOYEE_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[BILLING_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[BILLING_ID]"
+                      name="BILLING_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      dataType="wstr"
+                      length="45"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[REGION]"
+                      name="REGION" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[BRANCH_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[BRANCH_ID]"
+                      name="BRANCH_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[CUSTOMER_ID]"
+                      dataType="i2"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[CUSTOMER_ID]"
+                      name="CUSTOMER_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[EMPLOYEE_ID]"
+                      dataType="i2"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[EMPLOYEE_ID]"
+                      name="EMPLOYEE_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source Billing_Detail MySQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM sales.BILLING_DETAIL;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.root]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[BILLING_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]"
+                      name="BILLING_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[QUANTITY]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[BILLING_ID]"
+                      dataType="i4"
+                      name="BILLING_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="i2"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].ExternalColumns[QUANTITY]"
+                      dataType="i2"
+                      name="QUANTITY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[BILLING_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[BILLING_ID]"
+                      name="BILLING_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="i2"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[QUANTITY]"
+                      dataType="i2"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[QUANTITY]"
+                      name="QUANTITY" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source Discounts MySQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM sales.DISCOUNTS;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.root]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[DISCOUNT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[DISCOUNT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[DISCOUNT_ID]"
+                      name="DISCOUNT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[FROM]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[FROM]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[FROM]"
+                      name="FROM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[UNTIL]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[UNTIL]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[UNTIL]"
+                      name="UNTIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[TOTAL_BILLING]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[TOTAL_BILLING]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[TOTAL_BILLING]"
+                      name="TOTAL_BILLING"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[PERCENTAGE]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[PERCENTAGE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[PERCENTAGE]"
+                      name="PERCENTAGE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[DISCOUNT_ID]"
+                      dataType="i4"
+                      name="DISCOUNT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[FROM]"
+                      dataType="dbTimeStamp"
+                      name="FROM" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[UNTIL]"
+                      dataType="dbTimeStamp"
+                      name="UNTIL" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[TOTAL_BILLING]"
+                      dataType="r8"
+                      name="TOTAL_BILLING" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].ExternalColumns[PERCENTAGE]"
+                      dataType="i2"
+                      name="PERCENTAGE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[DISCOUNT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[DISCOUNT_ID]"
+                      name="DISCOUNT_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[FROM]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[FROM]"
+                      name="FROM" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[UNTIL]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[UNTIL]"
+                      name="UNTIL" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[TOTAL_BILLING]"
+                      dataType="r8"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[TOTAL_BILLING]"
+                      name="TOTAL_BILLING" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[PERCENTAGE]"
+                      dataType="i2"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[PERCENTAGE]"
+                      name="PERCENTAGE" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source Prices MySQL"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM sales.PRICES;</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.root]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.root]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[DATE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[DATE]"
+                      name="DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRICE]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRICE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRICE]"
+                      name="PRICE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="i4"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[DATE]"
+                      dataType="dbTimeStamp"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].ExternalColumns[PRICE]"
+                      dataType="r8"
+                      name="PRICE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[DATE]"
+                      name="DATE" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[PRICE]"
+                      dataType="r8"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[PRICE]"
+                      name="PRICE" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Billing STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_Billing_G01]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.bd_staging_2025_G01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].Columns[BILLING_ID]"
+                      cachedDataType="i4"
+                      cachedName="BILLING_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].Columns[BRANCH_ID]"
+                      cachedDataType="i4"
+                      cachedName="BRANCH_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BRANCH_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[BRANCH_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].Columns[DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATE"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].Columns[CUSTOMER_ID]"
+                      cachedDataType="i2"
+                      cachedName="CUSTOMER_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMER_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[CUSTOMER_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].Columns[EMPLOYEE_ID]"
+                      cachedDataType="i2"
+                      cachedName="EMPLOYEE_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[EMPLOYEE_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output].Columns[EMPLOYEE_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BILLING_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BRANCH_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BRANCH_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[CUSTOMER_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CUSTOMER_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input].ExternalColumns[EMPLOYEE_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EMPLOYEE_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Billing_Detail STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_BillingDetail_G01]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.bd_staging_2025_G01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].Columns[BILLING_ID]"
+                      cachedDataType="i4"
+                      cachedName="BILLING_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[BILLING_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="i2"
+                      cachedName="PRODUCT_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].Columns[QUANTITY]"
+                      cachedDataType="i2"
+                      cachedName="QUANTITY"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output].Columns[QUANTITY]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[BILLING_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BILLING_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Discounts STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_Discounts_G01]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.bd_staging_2025_G01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].Columns[DISCOUNT_ID]"
+                      cachedDataType="i4"
+                      cachedName="DISCOUNT_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[DISCOUNT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].Columns[FROM]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="FROM"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[FROM]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[FROM]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].Columns[UNTIL]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UNTIL"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[UNTIL]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[UNTIL]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].Columns[TOTAL_BILLING]"
+                      cachedDataType="r8"
+                      cachedName="TOTAL_BILLING"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_BILLING]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[TOTAL_BILLING]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].Columns[PERCENTAGE]"
+                      cachedDataType="i2"
+                      cachedName="PERCENTAGE"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PERCENTAGE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output].Columns[PERCENTAGE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DISCOUNT_ID]"
+                      dataType="i4"
+                      name="DISCOUNT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[FROM]"
+                      dataType="wstr"
+                      length="255"
+                      name="FROM" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[UNTIL]"
+                      dataType="wstr"
+                      length="255"
+                      name="UNTIL" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[TOTAL_BILLING]"
+                      dataType="numeric"
+                      name="TOTAL_BILLING"
+                      precision="12"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PERCENTAGE]"
+                      dataType="numeric"
+                      name="PERCENTAGE"
+                      precision="5"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination Prices STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stg_Prices_G01]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.bd_staging_2025_G01]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="i4"
+                      cachedName="PRODUCT_ID"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].Columns[DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DATE"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[DATE]" />
+                    <inputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].Columns[PRICE]"
+                      cachedDataType="r8"
+                      cachedName="PRICE"
+                      externalMetadataColumnId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRICE]"
+                      lineageId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output].Columns[PRICE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[DATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input].ExternalColumns[PRICE]"
+                      dataType="numeric"
+                      name="PRICE"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Sales STAGING.Paths[ADO NET Source Output]"
+              endId="Package\Load Sales STAGING\OLE DB Destination Billing STAGING.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Sales STAGING\ADO NET Source Billing MySQL.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Load Sales STAGING.Paths[ADO NET Source Output1]"
+              endId="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Load Sales STAGING.Paths[ADO NET Source Output2]"
+              endId="Package\Load Sales STAGING\OLE DB Destination Prices STAGING.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Sales STAGING\ADO NET Source Prices MySQL.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Load Sales STAGING.Paths[ADO NET Source Output3]"
+              endId="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING.Inputs[OLE DB Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Load Sales STAGING\ADO NET Source Discounts MySQL.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Sales INTERMEDIATE"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d0abb72c-b422-4036-9d4b-13ffd2767f8b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Sales INTERMEDIATE"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{858D9F11-8E26-4CF7-B138-B5E6CF665B2A}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE int_SalesUnified_G01;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Sales STAGING"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{4b3931f1-ca66-47e8-bafb-3a6d301e3289}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Sales STAGING"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D385B77F-16E0-4D80-B035-EAEFEB8810A8}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE stg_Billing_G01;&#xA;TRUNCATE TABLE stg_BillingDetail_G01;&#xA;TRUNCATE TABLE stg_Prices_G01;&#xA;TRUNCATE TABLE stg_Discounts_G01;&#xA;TRUNCATE TABLE stg_BillingHistory_G01;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1e00493b-f794-4062-aaaa-b21abf418eaf}"
+      DTS:From="Package\Truncate Sales STAGING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Sales STAGING" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{38eec013-5156-467c-9728-46620edb7476}"
+      DTS:From="Package\Load Sales STAGING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load History Sales SQL Server" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1fb24907-6b5b-4dea-a169-b7b8e9ba9064}"
+      DTS:From="Package\Load History Sales SQL Server"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Truncate Sales INTERMEDIATE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{14e55e53-44c5-40c4-ba13-9f310818266d}"
+      DTS:From="Package\Truncate Sales INTERMEDIATE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Load Sales INTERMEDIATE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{58cf5e25-e2ee-46f6-85d6-1e694c66e8eb}"
+      DTS:From="Package\Load Sales INTERMEDIATE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Clean Sales DATAWAREHOUSE" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{3d76c3ff-0304-4bdd-bb32-e5be13b23892}"
+      DTS:From="Package\Clean Sales DATAWAREHOUSE"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Load Sales DATAWAREHOUSE" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="243,42"
+          Id="Package\Clean Sales DATAWAREHOUSE"
+          TopLeft="358,397.537878787879" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\Load History Sales SQL Server"
+          TopLeft="387.5,204.204545454546" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Load Sales DATAWAREHOUSE"
+          TopLeft="359.25,472.037878787879" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load Sales INTERMEDIATE"
+          TopLeft="518.5,300.037878787879" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Load Sales STAGING"
+          TopLeft="522.333333333333,114.037878787879" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Truncate Sales INTERMEDIATE"
+          TopLeft="244.25,297.537878787879" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Truncate Sales STAGING"
+          TopLeft="267.356060606061,112.25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="472.356060606061,134.143939393939">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="49.9772727272725,0"
+              Start="0,0"
+              End="42.4772727272725,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42.4772727272725,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="615.333333333333,156.037878787879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-112.333333333333,48.1666666666667"
+              Start="0,0"
+              End="-112.333333333333,40.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.0833333333333"
+                    Point2="0,24.0833333333333"
+                    Point3="-4,24.0833333333333" />
+                  <mssgle:LineSegment
+                    End="-108.333333333333,24.0833333333333" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-108.333333333333,24.0833333333333"
+                    Point2="-112.333333333333,24.0833333333333"
+                    Point3="-112.333333333333,28.0833333333333" />
+                  <mssgle:LineSegment
+                    End="-112.333333333333,40.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="503,246.204545454546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-139.75,51.3333333333333"
+              Start="0,0"
+              End="-139.75,43.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6666666666667"
+                    Point2="0,25.6666666666667"
+                    Point3="-4,25.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-135.75,25.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-135.75,25.6666666666667"
+                    Point2="-139.75,25.6666666666667"
+                    Point3="-139.75,29.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-139.75,43.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="482.25,319.787878787879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.25,0"
+              Start="0,0"
+              End="28.75,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="28.75,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="628,342.037878787879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-148.5,55.5"
+              Start="0,0"
+              End="-148.5,48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.75"
+                    Point2="0,27.75"
+                    Point3="-4,27.75" />
+                  <mssgle:LineSegment
+                    End="-144.5,27.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-144.5,27.75"
+                    Point2="-148.5,27.75"
+                    Point3="-148.5,31.75" />
+                  <mssgle:LineSegment
+                    End="-148.5,48" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="478.875,439.537878787879">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.5"
+              Start="0,0"
+              End="0,25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load History Sales SQL Server">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="285,42"
+          Id="Package\Load History Sales SQL Server\OLE DB Source History Sales SQL Server"
+          TopLeft="392,74" />
+        <NodeLayout
+          Size="299,42"
+          Id="Package\Load History Sales SQL Server\OLE DB Destination Billing History STAGING"
+          TopLeft="386,199" />
+        <EdgeLayout
+          Id="Package\Load History Sales SQL Server.Paths[OLE DB Source Output]"
+          TopLeft="535,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83"
+              Start="0,0"
+              End="0,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\Load Sales STAGING">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="262,42"
+          Id="Package\Load Sales STAGING\OLE DB Destination Billing STAGING"
+          TopLeft="255,179" />
+        <NodeLayout
+          Size="272,42"
+          Id="Package\Load Sales STAGING\ADO NET Source Billing_Detail MySQL"
+          TopLeft="589,75" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Load Sales STAGING\ADO NET Source Prices MySQL"
+          TopLeft="277,252" />
+        <NodeLayout
+          Size="297,42"
+          Id="Package\Load Sales STAGING\OLE DB Destination Billing_Detail STAGING"
+          TopLeft="583,182" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Load Sales STAGING\OLE DB Destination Prices STAGING"
+          TopLeft="260,361" />
+        <NodeLayout
+          Size="281,42"
+          Id="Package\Load Sales STAGING\OLE DB Destination Discounts STAGING"
+          TopLeft="598,362" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\Load Sales STAGING\ADO NET Source Discounts MySQL"
+          TopLeft="607,255" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Load Sales STAGING\ADO NET Source Billing MySQL"
+          TopLeft="270,71" />
+        <EdgeLayout
+          Id="Package\Load Sales STAGING.Paths[ADO NET Source Output1]"
+          TopLeft="728.25,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales STAGING.Paths[ADO NET Source Output]"
+          TopLeft="387.5,113">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales STAGING.Paths[ADO NET Source Output3]"
+          TopLeft="736.75,297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Sales STAGING.Paths[ADO NET Source Output2]"
+          TopLeft="394,294">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
