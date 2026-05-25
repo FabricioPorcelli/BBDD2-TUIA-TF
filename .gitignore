@@ -1,0 +1,9 @@
+# Editor
+.vscode/
+
+# Backups
+backup/
+
+# Archivos compilados de SSIS
+ssis/**/bin/
+ssis/**/obj/
